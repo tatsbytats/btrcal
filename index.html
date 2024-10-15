@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leave and Time Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        html {
+            display: flex;
+            justify-content: center;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            max-width: 300px;
+            /* Limits the width for larger screens */
+            width: 100%;
+            /* Full width for smaller screens */
+            height: auto;
+            overflow-x: hidden;
+            justify-content: center;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            /* Allows wrapping for smaller screens */
+            justify-content: center
+            /* Space between items */
+        }
+
+        div {
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            flex: 1 1 45%;
+            /* Responsive sizing for divs */
+            min-width: 200px;
+            /* Minimum width for inputs */
+        }
+
+        label {
+            display: inline-block;
+            margin-right: 10px;
+            /* Spacing between label and input */
+        }
+
+        input {
+            width: 280px;
+            /* Full width of the container */
+            height: 30px;
+            padding: 5px;
+            /* Added padding for better UX */
+        }
+
+        button {
+            width: 100%;
+            /* Full width for buttons */
+            height: 36px;
+            /* Consistent button height */
+            margin-top: 10px;
+            /* Spacing above button */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container"></div>
+    <h1>Calculator</h1>
+    <div>
+        <label for="currentBalance">Current VL Balance :</label>
+        <input type="number" id="currentBalance" required>
+    </div>
+    <div>
+        <label for="vacationLeaveUsed">VL Used (hours):</label>
+        <input type="number" id="vacationLeaveUsed" required>
+    </div>
+    <div>
+        <label for="tardiness">Tardiness (minutes):</label>
+        <input type="number" id="tardiness" required>
+    </div>
+    <div>
+        <label for="underTime">Under Time (minutes):</label>
+        <input type="number" id="underTime" required>
+    </div>
+    <button onclick="calculate()">Calculate</button>
+
+    <h2>Results</h2>
+    <div id="results"></div>
+
+    </div>
+
+    <h2>Time Conversion</h2>
+    <div>
+        <label for="hoursInput">Enter Hours:</label>
+        <input type="number" id="hoursInput" placeholder="0">
+        <button onclick="convertHours()">Convert</button>
+    </div>
+    <div id="hoursResult"></div>
+
+    <div>
+        <label for="minutesInput">Enter Minutes:</label>
+        <input type="number" id="minutesInput" placeholder="0">
+        <button onclick="convertMinutes()">Convert</button>
+    </div>
+    <div id="minutesResult"></div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
