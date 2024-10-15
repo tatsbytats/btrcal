@@ -1,11 +1,10 @@
 function calculate() {
     const currentBalance = parseFloat(document.getElementById('currentBalance').value) || 0;
     const vacationLeaveUsed = parseFloat(document.getElementById('vacationLeaveUsed').value) || 0;
-    const tardiness = parseFloat(document.getElementById('tardiness').value) || 0;
-    const underTime = parseFloat(document.getElementById('underTime').value) || 0;
+    const numberint = parseFloat(document.getElementById('tardiness').value) || 0;
 
     // Combine tardiness and under time into total minutes lost
-    const totalMinutesLost = tardiness + underTime;
+    const totalMinutesLost = numberint;
 
     // Convert total minutes lost to fraction of a day
     const totalMinutesFraction = convertMinutesToFraction(totalMinutesLost);
