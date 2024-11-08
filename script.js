@@ -72,3 +72,46 @@ function convertMinutes() {
     const fractionOfDay = convertMinutesToFraction(minutes);  // Use the minutes-to-fraction conversion
     document.getElementById('minutesResult').innerHTML = `Equivalent Day: ${fractionOfDay.toFixed(3)}`;
 }
+
+// Function to toggle dark mode
+function toggleMode() {
+    document.body.classList.toggle('dark-mode');
+}
+
+// Sample functions for the calculator (add your logic here)
+function calculate() {
+    const currentBalance = parseFloat(document.getElementById('currentBalance').value);
+    const vacationLeaveUsed = parseFloat(document.getElementById('vacationLeaveUsed').value);
+    const tardiness = parseFloat(document.getElementById('tardiness').value);
+    const resultsDiv = document.getElementById('results');
+
+    if (!isNaN(currentBalance) && !isNaN(vacationLeaveUsed) && !isNaN(tardiness)) {
+        const remainingBalance = currentBalance - vacationLeaveUsed;
+        const adjustedBalance = remainingBalance - (tardiness / 60); // Subtract tardiness in hours
+        resultsDiv.innerHTML = `Remaining Balance: ${remainingBalance.toFixed(2)} VL<br>Adjusted Balance (with tardiness): ${adjustedBalance.toFixed(2)} VL`;
+    } else {
+        resultsDiv.innerHTML = 'Please enter valid numbers in all fields.';
+    }
+}
+
+function convertHours() {
+    const hoursInput = parseFloat(document.getElementById('hoursInput').value);
+    const hoursResultDiv = document.getElementById('hoursResult');
+    if (!isNaN(hoursInput)) {
+        const totalMinutes = hoursInput * 60;
+        hoursResultDiv.innerHTML = `${hoursInput} hours = ${totalMinutes} minutes`;
+    } else {
+        hoursResultDiv.innerHTML = 'Please enter a valid number.';
+    }
+}
+
+function convertMinutes() {
+    const minutesInput = parseFloat(document.getElementById('minutesInput').value);
+    const minutesResultDiv = document.getElementById('minutesResult');
+    if (!isNaN(minutesInput)) {
+        const totalHours = minutesInput / 60;
+        minutesResultDiv.innerHTML = `${minutesInput} minutes = ${totalHours.toFixed(2)} hours`;
+    } else {
+        minutesResultDiv.innerHTML = 'Please enter a valid number.';
+    }
+}
