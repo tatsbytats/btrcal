@@ -7,77 +7,122 @@
     <title>Leave and Time Calculator</title>
     <link rel="stylesheet" href="styles.css">
     <style>
+        /* Default (Light) Mode */
+        :root {
+            --background-color: #fff;
+            --text-color: #333;
+            --button-bg: #007bff;
+            --button-text-color: #fff;
+            --input-bg: #f9f9f9;
+            --input-text-color: #333;
+            --input-border: #ccc;
+            --container-bg: #fafafa;
+            --box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Dark Mode */
+        body.dark-mode {
+            --background-color: #121212;
+            --text-color: #f1f1f1;
+            --button-bg: #6200ea;
+            --button-text-color: #fff;
+            --input-bg: #333;
+            --input-text-color: #f1f1f1;
+            --input-border: #444;
+            --container-bg: #222;
+            --box-shadow: 0 2px 10px rgba(255, 255, 255, 0.1);
+        }
+
         html {
-    width: 100%;
-}
+            width: 100%;
+        }
 
-body {
-    font-family: Arial, sans-serif;
-    width: 100%;
-    margin: 0;
-    position: relative;
-    height: 100vh; /* Full height */
-    display: flex; /* Enable flexbox */
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
-}
+        body {
+            font-family: Arial, sans-serif;
+            width: 100%;
+            margin: 0;
+            position: relative;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            transition: all 0.3s ease;
+        }
 
-.container {
-    position: relative; /* Use relative positioning */
-    width: 100%; /* Full width */
-    max-width: 400px; /* Maximum width for larger screens */
-    padding: 20px; /* Optional padding */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Optional shadow for aesthetics */
-}
+        .container {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            box-shadow: var(--box-shadow);
+            background-color: var(--container-bg);
+            border-radius: 8px;
+        }
 
-label {
-    display: inline-block;
-    margin-right: 10px;
-}
+        label {
+            display: inline-block;
+            margin-right: 10px;
+        }
 
-input {
-    width: 100%;
-    height: 40px;
-    padding: 7px 10px; /* Padding for better UX */
-    box-sizing: border-box; /* Include padding in width */
-    margin-bottom: 10px;
-}
+        input {
+            width: 100%;
+            height: 40px;
+            padding: 7px 10px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+            background-color: var(--input-bg);
+            color: var(--input-text-color);
+            border: 1px solid var(--input-border);
+            border-radius: 4px;
+        }
 
-button {
-    width: 100%;
-    height: 36px;
-    margin-top: 10px;
-}
+        button {
+            width: 100%;
+            height: 36px;
+            margin-top: 10px;
+            background-color: var(--button-bg);
+            color: var(--button-text-color);
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
 
-/* Responsive adjustments */
-@media (max-width: 600px) {
-    body {
-        padding: 10px; /* Add padding for smaller screens */
-    }
+        button:hover {
+            background-color: #0056b3;
+        }
 
-    .container {
-        width: calc(100% - 20px); /* Adjust width with padding */
-        margin: 0; /* Reset margin */
-    }
+        /* Responsive adjustments */
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
 
-    input {
-        margin-bottom: 10px; /* Space between inputs */
-    }
+            .container {
+                width: calc(100% - 20px);
+                margin: 0;
+            }
 
-    button {
-        height: 40px; /* Slightly larger button height */
-    }
-}
+            input {
+                margin-bottom: 10px;
+            }
 
+            button {
+                height: 40px;
+            }
+        }
     </style>
 </head>
 
 <body>
     <div class="container">
         <h1>Calculator</h1>
+
         <div>
             <label for="currentBalance">Current VL Balance :</label>
             <input type="number" id="currentBalance" required>
@@ -87,7 +132,7 @@ button {
             <input type="number" id="vacationLeaveUsed" required>
         </div>
         <div>
-            <label for="numberint">Tardiness/Undertime (minutes):</label>
+            <label for="tardiness">Tardiness/Undertime (minutes):</label>
             <input type="number" id="tardiness" required>
         </div>
 
@@ -95,8 +140,6 @@ button {
 
         <h2>Results</h2>
         <div id="results"></div>
-
-
 
         <h2>Time Conversion</h2>
         <div>
@@ -112,6 +155,9 @@ button {
             <button onclick="convertMinutes()">Convert</button>
         </div>
         <div id="minutesResult"></div>
+
+        <!-- Mode Toggle Button -->
+        <button onclick="toggleMode()">Toggle Dark Mode</button>
     </div>
 
     <script src="script.js"></script>
